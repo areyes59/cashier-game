@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="keypad-container.css">
+    <title>Cashier Game</title>
+    <style>
+        body {
+            background: url("8bit-Seattle.jpeg") no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #parent1-container {
+            background-color: transparent;
+            text-align: left; /* Change text alignment to left */
+            color: rgba(255, 174, 0, 0.945);
+            padding: 20px;
+            border-radius: 10px;
+            width: 1100px;
+            height: 600px;
+            font-family: Arial, sans-serif; /* Specify the font style */
+            position: relative; /* To position the banner */
+        }
+
+        #ascii-banner {
+            background-color: transparent;
+            height: 100px;
+            font-family: monospace; /* Use a monospace font for ASCII art */
+            /* white-space: pre; Preserve whitespace in the banner */
+            position: relative; /* Position the banner */
+            left: 5px; /* Adjust the left positioning as needed */
+            top: 5px; /* Adjust the top positioning as needed */
+        }
+
+        #banner {
+            font-size: 50px;
+        }
+
+        #parent2-container {
+            background-color: transparent;
+            /* margin: 10px; */
+            display: flex;
+            justify-content: space-between;
+            height: 450px;
+        }
+
+        #game-container {
+            background-color: rgba(255, 255, 255, 0.194);
+            flex: 2.25;
+            padding: 20px;
+            /* border-radius: 10px; */
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+            position: relative;
+            overflow: hidden; /* Hide overflowing content */
+        }
+
+        #keypad-container {
+            background-color: blue;
+            flex: 1;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #register-image {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+        }
+
+        /* Add styling for item-container */
+        #item-container {
+            background-color: transparent;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200px;
+            height: 275px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column; /* Stack containers vertically */
+            align-items: center; /* Center content horizontally */
+            animation: moveLeft 5s infinite linear forwards; /* Animation for moving left */
+        }
+
+        /* Add styling for item-name-container */
+        #item-name-container {
+            height: 55px;
+            font-size: 24px;
+            font-weight: bold;
+            background-color: transparent; /* Transparent background */
+            color: white; /* Text color */
+            padding: 10px;
+            display: flex; /* Enable flex layout */
+            justify-content: center; /* Center text horizontally */
+            align-items: center; /* Center text vertically */
+            position: absolute;
+            width: 100%;
+            top: 50px;
+            z-index: 2;
+        }
+
+        /* Add styling for item-image-container */
+        #item-image-container {
+            background-color: transparent;
+            width: 100%; /* Take full width of parent */
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            bottom: 0;
+            position: absolute;
+            z-index: 1;
+        }
+
+        #item-image-container img {
+            position: absolute;
+            bottom: 0;
+        }
+
+        /* Add styling for the item image */
+        #item-image {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        #profit-container {
+            background-color: transparent;
+            font-size: 18px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            height: 70px;
+            overflow: hidden;
+            position: absolute;
+            display: none;
+            /* animation: moveUp 0.5s linear forwards; Continuous animation for moving left */
+        }
+
+        #conveyer-container {
+            background-color: rgb(99, 99, 99);
+            display: flex;
+            justify-content: space-between;
+            height: 100px;
+        }
+
+        /* Keyframes animation for moving left */
+        @keyframes moveLeft {
+            from {
+                left: 725px;
+            }
+            to {
+                left: -200px; /* Adjust the distance as needed */
+            }
+        }
+
+        /* Keyframes animation for moving up */
+        @keyframes moveUp {
+            from {
+                bottom: 0;
+            }
+            to {
+                bottom: 200px; /* Adjust the distance as needed */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="parent1-container">
+        <div id="ascii-banner">
+            <!-- Include your ASCII banner content here -->
+            <!-- Example ASCII banner content, replace with your own -->
+            <pre>
+ ██████╗ █████╗ ███████╗██╗  ██╗██╗███████╗██████╗      ██████╗ ██████╗ ██████╗ ███████╗███████╗
+██╔════╝██╔══██╗██╔════╝██║  ██║██║██╔════╝██╔══██╗    ██╔════╝██╔═══██╗██╔══██╗██╔════╝██╔════╝
+██║     ███████║███████╗███████║██║█████╗  ██████╔╝    ██║     ██║   ██║██║  ██║█████╗  ███████╗
+██║     ██╔══██║╚════██║██╔══██║██║██╔══╝  ██╔══██╗    ██║     ██║   ██║██║  ██║██╔══╝  ╚════██║
+╚██████╗██║  ██║███████║██║  ██║██║███████╗██║  ██║    ╚██████╗╚██████╔╝██████╔╝███████╗███████║
+ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚══════╝
+                                                                                                
+            </pre>
+        </div>
+        <!-- <div id="banner">
+            Hello World
+        </div> -->
+        <div id="parent2-container">
+            <div id="game-container">
+                <!-- Insert a score counter -->
+                <div id="score-counter">Score: 0</div>
+                <!-- Insert the register image inside the game container -->
+                <img id="register-image" src="register_image.png" alt="Register Image">
+                <!-- Create item-container inside game-container -->
+                <div id="item-container">
+                    <!-- Create profit-container -->
+                    <div id="profit-container">
+                        <img id="8bit-money" src="8bit-money.png" alt="Money Image" height="50px" style="margin: 10px;">
+                    </div>
+                    <!-- Create item-name-container -->
+                    <div id="item-name-container">Text</div>
+                    <!-- Create item-image-container -->
+                    <div id="item-image-container">
+                        <!-- Add the image "shopping-basket.jpeg" -->
+                        <img id="item-image" src="shopping-basket.png" alt="Shopping Basket">
+                    </div>
+                </div>
+            </div>
+            <div class="keypad-container">
+                <!-- Content for the keypad container -->
+                <input id="keypad-input" type="text" class="keypad-container__text">
+                <div class="keypad-container__numpad">
+                    <div class="keypad-container__key" onclick="updateText('1')">1</div>
+                    <div class="keypad-container__key" onclick="updateText('2')">2</div>
+                    <div class="keypad-container__key" onclick="updateText('3')">3</div><br>
+                    <div class="keypad-container__key" onclick="updateText('4')">4</div>
+                    <div class="keypad-container__key" onclick="updateText('5')">5</div>
+                    <div class="keypad-container__key" onclick="updateText('6')">6</div><br>
+                    <div class="keypad-container__key" onclick="updateText('7')">7</div>
+                    <div class="keypad-container__key" onclick="updateText('8')">8</div>
+                    <div class="keypad-container__key" onclick="updateText('9')">9</div><br>
+                    <div class="keypad-container__key material-icons" onclick="backspace()">backspace</div>
+                    <div class="keypad-container__key" onclick="updateText('0')">0</div>
+                    <div class="keypad-container__key material-icons" onclick="checkCode()">done</div>
+                </div>
+            </div>
+        </div>
+        <div id="conveyer-container"></div>
+    </div>
+
+    <script>
+        // Initialize the score variable
+        let score = 0;
+
+        // Function to update text on the keypad.
+        function updateText(value) {
+            const textInput = document.querySelector('.keypad-container__text');
+            textInput.value += value;
+            console.log("Entered value: " + textInput.value);
+        }
+
+        function backspace() {
+            const textInput = document.querySelector('.keypad-container__text');
+            textInput.value = textInput.value.slice(0, -1);
+        }
+
+        function clearText() {
+            const textInput = document.querySelector('.keypad-container__text');
+            textInput.value = '';
+        }
+
+        // Function to set a random item name in the item-name-container and its code
+        function setRandomItem() {
+            const items = [
+                { name: "APPLE", code: 1 },
+                { name: "ORANGE", code: 2 },
+                { name: "STAMPS", code: 5 }
+            ];
+            const randomIndex = Math.floor(Math.random() * items.length);
+            const itemNameContainer = document.getElementById("item-name-container");
+            itemNameContainer.textContent = items[randomIndex].name;
+            itemNameContainer.dataset.code = items[randomIndex].code; // Store code as a data attribute
+            console.log("Item Code: " + items[randomIndex].code);
+        }
+
+        // Set an initial random item name and code
+        setRandomItem();
+
+        function hideProfitContainer() {
+            const profitContainer = document.getElementById("profit-container");
+            profitContainer.style.display = "none";
+        }
+
+        // Add an event listener to restart the animation and change the item name and code
+        const itemContainer = document.getElementById("item-container");
+        itemContainer.addEventListener("animationiteration", () => {
+            setRandomItem();
+
+            // Reset the image source to "shopping-basket.png"
+            const itemImage = document.getElementById("item-image");
+            itemImage.src = "shopping-basket.png";
+
+            // Hide the profit-container again
+            hideProfitContainer(); 
+        });
+
+        // Function to check if the entered code matches the item's code
+        function checkCode() {
+            const enteredCode = document.querySelector('.keypad-container__text').value;
+            const itemCode = document.getElementById("item-name-container").dataset.code;
+            
+            if (enteredCode === itemCode) {
+                // Clear text input
+                clearText();
+
+                // Change shopping-basket.png to grocery-bag.png
+                const itemImage = document.getElementById("item-image");
+                itemImage.src = "grocery-bag.png";
+
+                // Show profit-container and trigger animation
+                const profitContainer = document.getElementById("profit-container");
+                profitContainer.style.display = "block";
+                profitContainer.style.animation = "moveUp 0.5s linear forwards";
+
+                // Increase the score by 15 points
+                score += 15;
+                
+                // Update the score counter
+                updateScore();
+            }
+        }
+
+        // Function to update the score counter
+        function updateScore() {
+            const scoreCounter = document.getElementById("score-counter");
+            scoreCounter.textContent = "Score: " + score;
+        }
+
+        // Attach the checkCode function to the "done" button click event
+        const doneButton = document.querySelector('.keypad-container__key.done');
+        doneButton.addEventListener('click', checkCode);
+
+        // Add an event listener to the keypad input field
+        const keypadInput = document.getElementById('keypad-input');
+        keypadInput.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+                // Trigger the click event on the doneButton
+                doneButton.click();
+            }
+        });
+    </script>
+</body>
+</html>

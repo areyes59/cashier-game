@@ -1,0 +1,46 @@
+.keypad-container {
+    width: 300px;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+    background: #d9deff;
+    border: 1px solid #363b5e;
+    display: flex; /* Add flex display */
+    flex-direction: column; /* Arrange children vertically */
+    align-items: center; /* Center items horizontally */
+}
+
+.keypad-container__text {
+    width: 150px;
+    height: 25px;
+    margin: 10px auto 10px auto;
+    padding: 10px;
+    display: block;
+    font-size: 1em;
+    text-align: center;
+    letter-spacing: 0.2em;
+    background: rgba(0, 0, 0, 0.15);
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    cursor: default;
+}
+
+.keypad-container__key {
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+    background: rgba(0, 0, 0, 0.15);
+    color: #363b5e;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.keypad-container__key:active {
+    background: rgba(0, 0, 0, 0.25);
+}
