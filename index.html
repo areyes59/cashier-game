@@ -19,41 +19,56 @@
 
         #parent1-container {
             background-color: transparent;
-            text-align: left; /* Change text alignment to left */
+            text-align: left;
             color: rgba(255, 174, 0, 0.945);
-            padding: 20px;
-            border-radius: 10px;
-            width: 90%; /* Use relative width */
-            max-width: 1100px; /* Optional: set a max width for larger screens */
-            font-family: Arial, sans-serif; /* Specify the font style */
-            position: relative; /* To position the banner */
+            min-height: 95%;
+            /* width: 80%; */
+            /* max-height: 80%; Limit the width to 80% of the screen */
+            font-family: Arial, sans-serif;
+            position: relative;
+            display: relative;
+            flex-direction: column; /* Change to column layout */
+            align-items: center; /* Center contents horizontally */
+            /* justify-content: space-between; Spread contents vertically */
+            padding: 0; /* Removed padding to make the aspect ratio more precise */
+            overflow: hidden; /* Hide any content that exceeds the aspect ratio */
+        }
+
+        #parent1-container::before {
+            content: "";
+            /* 16 divided by 9 times 100% (9:16 aspect ratio) */
+            padding-top: 177.77%;
+            width: 100%;
         }
 
         #ascii-banner {
             background-color: transparent;
-            height: 100px;
+            height: 15%;
+            width: 100%;
             font-family: monospace; /* Use a monospace font for ASCII art */
             /* white-space: pre; Preserve whitespace in the banner */
             position: relative; /* Position the banner */
-            left: 5px; /* Adjust the left positioning as needed */
+            left: 0; /* Adjust the left positioning as needed */
             top: 5px; /* Adjust the top positioning as needed */
         }
 
-        #banner {
+        /* #banner {
             font-size: 50px;
-        }
+        } */
 
         #parent2-container {
             background-color: transparent;
             /* margin: 10px; */
             display: flex;
             justify-content: space-between;
-            height: 450px;
+            /* height: 450px; */
+            height: 30%;
         }
 
         #game-container {
+            width: 75%;
             background-color: rgba(255, 255, 255, 0.194);
-            flex: 2.25;
+            /* flex: 2.25; */
             padding: 20px;
             /* border-radius: 10px; */
             border-top-right-radius: 10px;
@@ -62,19 +77,12 @@
             overflow: hidden; /* Hide overflowing content */
         }
 
-        #keypad-container {
-            background-color: transparent;
-            flex: 1;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
         #register-image {
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 200px;
-            height: 200px;
+            width: 30%;
+            height: 60%;
         }
 
         /* Add styling for item-container */
@@ -83,19 +91,19 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 200px;
-            height: 275px;
+            width: 30%;
+            height: 100%;
             border-radius: 10px;
             display: flex;
             flex-direction: column; /* Stack containers vertically */
             align-items: center; /* Center content horizontally */
-            animation: moveLeft 5s infinite linear forwards; /* Animation for moving left */
+            animation: moveLeft 12s infinite linear forwards; /* Animation for moving left */
         }
 
         /* Add styling for item-name-container */
         #item-name-container {
-            height: 55px;
-            font-size: 24px;
+            max-height: 45%;
+            font-size: 20px;
             font-weight: bold;
             background-color: transparent; /* Transparent background */
             color: white; /* Text color */
@@ -103,9 +111,10 @@
             display: flex; /* Enable flex layout */
             justify-content: center; /* Center text horizontally */
             align-items: center; /* Center text vertically */
+            text-align: center; /* Center-align text even when it overflows */
             position: absolute;
             width: 100%;
-            top: 50px;
+            top: 20%;
             z-index: 2;
         }
 
@@ -113,11 +122,11 @@
         #item-image-container {
             background-color: transparent;
             width: 100%; /* Take full width of parent */
-            height: 150px;
+            height: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            bottom: 0;
+            bottom: -1px;
             position: absolute;
             z-index: 1;
         }
@@ -135,22 +144,24 @@
 
         #profit-container {
             background-color: transparent;
-            font-size: 18px;
             border-radius: 10px;
             margin-bottom: 10px;
             width: 100%;
-            height: 70px;
+            height: 25%;
             overflow: hidden;
-            position: absolute;
+            position: flex;
             display: none;
-            /* animation: moveUp 0.5s linear forwards; Continuous animation for moving left */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            /* Continuous animation for moving left */
+            /* animation: moveUp 0.5s infinite linear forwards; */
         }
 
         #conveyer-container {
             background-color: rgb(99, 99, 99);
             display: flex;
-            justify-content: space-between;
             height: 100px;
+            border-radius: 10px;
         }
 
         /* Keyframes animation for moving left */
@@ -186,7 +197,6 @@
 ██║     ██╔══██║╚════██║██╔══██║██║██╔══╝  ██╔══██╗    ██║     ██║   ██║██║  ██║██╔══╝  ╚════██║
 ╚██████╗██║  ██║███████║██║  ██║██║███████╗██║  ██║    ╚██████╗╚██████╔╝██████╔╝███████╗███████║
  ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚══════╝
-                                                                                                
             </pre>
         </div>
         <!-- <div id="banner">
@@ -205,7 +215,7 @@
                         <img id="8bit-money" src="8bit-money.png" alt="Money Image" height="50px" style="margin: 10px;">
                     </div>
                     <!-- Create item-name-container -->
-                    <div id="item-name-container">Text</div>
+                    <div id="item-name-container"></div>
                     <!-- Create item-image-container -->
                     <div id="item-image-container">
                         <!-- Add the image "shopping-basket.jpeg" -->
@@ -217,18 +227,24 @@
                 <!-- Content for the keypad container -->
                 <input id="keypad-input" type="text" class="keypad-container__text">
                 <div class="keypad-container__numpad">
-                    <div class="keypad-container__key" onclick="updateText('1')">1</div>
-                    <div class="keypad-container__key" onclick="updateText('2')">2</div>
-                    <div class="keypad-container__key" onclick="updateText('3')">3</div><br>
-                    <div class="keypad-container__key" onclick="updateText('4')">4</div>
-                    <div class="keypad-container__key" onclick="updateText('5')">5</div>
-                    <div class="keypad-container__key" onclick="updateText('6')">6</div><br>
-                    <div class="keypad-container__key" onclick="updateText('7')">7</div>
-                    <div class="keypad-container__key" onclick="updateText('8')">8</div>
-                    <div class="keypad-container__key" onclick="updateText('9')">9</div><br>
-                    <div class="keypad-container__key material-icons" onclick="backspace()">backspace</div>
-                    <div class="keypad-container__key" onclick="updateText('0')">0</div>
-                    <div class="keypad-container__key material-icons" onclick="checkCode()">done</div>
+                    <div 
+                    style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
+                    unselectable="on"
+                    onselectstart="return false;" 
+                    onmousedown="return false;">
+                        <div class="keypad-container__key" onclick="updateText('1')">1</div>
+                        <div class="keypad-container__key" onclick="updateText('2')">2</div>
+                        <div class="keypad-container__key" onclick="updateText('3')">3</div><br>
+                        <div class="keypad-container__key" onclick="updateText('4')">4</div>
+                        <div class="keypad-container__key" onclick="updateText('5')">5</div>
+                        <div class="keypad-container__key" onclick="updateText('6')">6</div><br>
+                        <div class="keypad-container__key" onclick="updateText('7')">7</div>
+                        <div class="keypad-container__key" onclick="updateText('8')">8</div>
+                        <div class="keypad-container__key" onclick="updateText('9')">9</div><br>
+                        <div class="keypad-container__key material-icons" onclick="backspace()">backspace</div>
+                        <div class="keypad-container__key" onclick="updateText('0')">0</div>
+                        <div class="keypad-container__key material-icons" onclick="checkCode()">done</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -259,9 +275,81 @@
         // Function to set a random item name in the item-name-container and its code
         function setRandomItem() {
             const items = [
-                { name: "APPLE", code: 1 },
-                { name: "ORANGE", code: 2 },
-                { name: "STAMPS", code: 5 }
+                { name: "APPLE BRAEBURN ORGANIC", code: 6236 },
+                { name: "APPLE FUJI ORGANIC", code: 6229 },
+                { name: "APPLE GALA ORGANIC", code: 6278 },
+                { name: "APPLE GOLDEN DELICIOUS ORGANIC", code: 678 },
+                { name: "APPLE RED DELICIOUS ORGANIC", code: 671 },
+                { name: "ASPARAGUS", code: 33 },
+                { name: "AVOCADO HASS ORGANIC", code: 658 },
+                { name: "BANANA ORGANIC", code: 657 },
+                { name: "BROCCOLI ORGANIC", code: 628 },
+                { name: "CABBAGE GREEN ORGANIC", code: 6248 },
+                { name: "CARROT BULK ORGANIC", code: 604 },
+                { name: "CAULIFLOWER ORGANIC", code: 674 },
+                { name: "CELERY ORGANIC", code: 670 },
+                { name: "CUCUMBER ORGANIC", code: 669 },
+                { name: "GARLIC ORGANIC", code: 6200 },
+                { name: "GRAPEFRUIT RUBY LARGE ORGANIC", code: 6932 },
+                { name: "GRAPES GREEN SEEDLESS ORGANIC", code: 655 },
+                { name: "GRAPES RED SEEDLESS ORGANIC", code: 651 },
+                { name: "LEMONS ORGANIC", code: 665 },
+                { name: "LETTUCE GREEN LEAF ORGANIC", code: 684 },
+                { name: "LETTUCE RED LEAF ORGANIC", code: 679 },
+                { name: "LETTUCE ROMAINE ORGANIC", code: 682 },
+                { name: "MELON CANTALOUPE ORGANIC", code: 632 },
+                { name: "NECTARINES ORGANIC", code: 6206 },
+                { name: "ONION GREEN ORGANIC", code: 605 },
+                { name: "ONIONS RED ORGANIC", code: 606 },
+                { name: "ONIONS SWEET ORGANIC", code: 6294 },
+                { name: "ONIONS WHITE ORGANIC", code: 607 },
+                { name: "ONIONS YELLOW ORGANIC", code: 608 },
+                { name: "ORANGE NAVEL ORGANIC", code: 661 },
+                { name: "ORANGE VALENICA ORGANIC", code: 685 },
+                { name: "ORGANIC LIMES", code: 668 },
+                { name: "ORGANIC WHITE MUSHROOMS", code: 687 },
+                { name: "PARSLEY ORGANIC", code: 6221 },
+                { name: "PEAR ANJOU ORGANIC", code: 641 },
+                { name: "PEAR BARTLETT ORGANIC", code: 642 },
+                { name: "PEAR BOSC ORGANIC", code: 643 },
+                { name: "PEPPERS GREEN ORGANIC", code: 680 },
+                { name: "PEPPERS RED ORGANIC", code: 683 },
+                { name: "PEPPERS YELLOW ORGANIC", code: 689 },
+                { name: "POTATO RUSSET ORGANIC", code: 611 },
+                { name: "POTATO YUKON GOLD ORGANIC", code: 609 },
+                { name: "TOMATO ON VINE ORGANIC", code: 6449 },
+                { name: "TOMATO ORGANIC", code: 649 },
+                { name: "TOMATO ROMA ORGANIC", code: 614 },
+                { name: "TOMATO HEIRLOOM ORGANIC", code: 6399 },
+                { name: "YAMS JEWEL ORGANIC", code: 646 },
+                { name: "DELI MADE COOKIE", code: 9902 },
+                { name: "HOT BAR", code: 9902 },
+                { name: "SALAD BAR", code: 9977 },
+                { name: "MUFFINS", code: 9996 },
+                { name: "SCONES", code: 9997 },
+                { name: "SOUP 8oz", code: 9016 },
+                { name: "SOUP 16oz", code: 9017 },
+                { name: "SOUP 32oz", code: 9282 },
+                { name: "SLICE OF PIZZA", code: 9723 },
+                { name: "BROWN ORGANIC EGGS", code: 3011 },
+                { name: "WHITE ORGANIC EGGS", code: 848 },
+                { name: "FIDALGO BAY ESPRESSO BLEND", code: 1858 },
+                { name: "FIDALGO BAY FRENCH ROAST", code: 1859 },
+                { name: "FIDALGO BAY BREAKFAST BLEND", code: 1860 },
+                { name: "TONY'S CARMELITA FT", code: 3725 },
+                { name: "KALANI FRENCH ROAST", code: 3792 },
+                { name: "CASHEWS WHOLE RAW LARGE", code: 3413 },
+                { name: "WALNUTS HALVES/PIECES", code: 3454 },
+                { name: "POPCORN YELLOW", code: 3853 },
+                { name: "OATS ROLLED REG GRAIN MILLERS", code: 3869 },
+                { name: "BURROUGHS FARMS RSTD DICED ALMONDS", code: 9053 },
+                { name: "CB's PEANUT BUTTER SPLITS", code: 5855 },
+                { name: "LOTUS RICE WHITE JASMINE", code: 1808 },
+                { name: "WATER BULK 1 GAL", code: 820 },
+                { name: "WATER BULK 1/2 GAL", code: 819 },
+                { name: "STAMPS", code: 5000 },
+                { name: "BAGS", code: 7705 },
+                { name: "MURCOTT TANGERINES BAG", code: 374 }
             ];
             const randomIndex = Math.floor(Math.random() * items.length);
             const itemNameContainer = document.getElementById("item-name-container");
