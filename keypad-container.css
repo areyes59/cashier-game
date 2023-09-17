@@ -1,5 +1,6 @@
 .keypad-container {
     width: 25%;
+    height: 100%;
     display: inline-block;
     border-radius: 10px;
     padding: 10px;
@@ -12,8 +13,8 @@
 }
 
 .keypad-container__text {
-    width: 150px;
-    height: 25px;
+    width: 75%;
+    height: 25%;
     margin: 10px auto 10px auto;
     padding: 10px;
     display: block;
@@ -28,10 +29,11 @@
 }
 
 .keypad-container__key {
-    width: 60px;
-    height: 60px;
+    width: 30px;
+    height: 30px;
     margin: 10px;
     background: rgba(0, 0, 0, 0.15);
+    font-size: 15pt;
     color: #363b5e;
     border-radius: 50%;
     display: inline-flex;
